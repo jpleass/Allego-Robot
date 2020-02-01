@@ -1,43 +1,65 @@
 var mic;
 let img_resting;
+let faces = {}
 
-function preload() {
-  img_resting = loadImage('images/face_resting.png');
-  img_question = loadImage('images/question-face.png');
-  img_happy = loadImage('images/happy-face.png');
-  img_heart = loadImage('images/heart-face.png');
-  img_main = loadImage('images/bot_separated-all.png');
+const showFace = face => {
+  const keys = Object.entries(faces)
+  for (const key of keys) {
+    face === key[0]
+      ? key[1].classList.add('show')
+      : key[1].classList.remove('show')
+    
+  }
+}
+
+document.addEventListener('keydown', e => {
+  if (e.keyCode === 83) {
+    showFace('question')
+  }
+  if (e.keyCode === 68) {
+    showFace('happy')
+  }
+  if (e.keyCode === 70) {
+    showFace('heart')
+  }
+})
+
+document.addEventListener('keyup', e => {
+  showFace('resting')
+})
+
+window.onload = () => {
+  faces = {
+    resting: document.querySelector('.face__resting'),
+    question: document.querySelector('.face__question'),
+    happy: document.querySelector('.face__happy'),
+    heart: document.querySelector('.face__heart'),
+  }
+  showFace('resting')
 }
 
 
 function setup(){
-// background(7, 20, 48);
-createCanvas(windowWidth,windowHeight);
-mic = new p5.AudioIn();
-mic.start();
+  createCanvas(windowWidth,windowHeight);
 }
 
 
 function draw(){
-
-var vol = mic.getLevel();
-noStroke();
-// fill(7, 20, 48);
-rect(width/2, 450, vol * 300, 150);
-rect(width/2, 450, vol * -300, 150);
-// console.log(vol);
-image(img_main,163,0, 1200,900);
-
-  if (keyCode === 83) {
-    console.log("S");
-      image(img_question, 163, 0, 1200, 897);
-  } else if (keyCode === 68) {
-    console.log("D");
-      image(img_happy, 163, 0, 1200, 897);
-  }else if (keyCode === 70) {
-    console.log("F");
-      image(img_heart, 163, 0, 1200, 897);
-  } else{
-      image(img_resting, 163, 0, 1200, 897);
+  if (mic) {
+    var vol = mic.getLevel();
+    noStroke();
+    clear()
+    rect( (width / 2) - 1, (window.innerHeight / 2) - 50, vol * 300, 150);
+    rect( width / 2, (window.innerHeight / 2) - 50, vol * -300, 150);
+    fill(7, 20, 48);
   }
+}
+
+
+function touchEnded() {
+  mic = new p5.AudioIn(() => {
+    console.log('Why')
+  });
+  mic.start();
+  console.log(mic)
 }

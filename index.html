@@ -1,41 +1,94 @@
 <!DOCTYPE html>
 <html lang="">
+
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>p5.js example</title>
     <style> body {padding: 0; margin: 0;} </style>
+    <link rel="stylesheet" href="animate.css">
     <script src="p5.js"></script>
     <!-- <script src="p5.sound.js"></script> -->
     <script src="p5.sound.min.js"></script>
     <script src="sketch.js"></script>
+    
+
+    <style>
+
+      html, body {
+        position: relative;
+        width: 100%; height: 100%;
+        overflow: hidden;
+      }
+      
+      .robot__body {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+      }
+
+      .robot__head {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+      }
+
+      canvas {
+        transform: rotate(-4deg) translateX(0.35%);
+        position: relative;
+        z-index: 1;
+      }
+
+      .robot__body img {
+        max-width: 100%;
+        max-height: 80vh;
+        position: relative;
+        top: 4vh;
+        left: 1vh;
+      }
+
+      .robot__head img {
+        max-width: 100%;
+        max-height: 30vh;
+        position: absolute;
+        top: 10vh;
+        opacity: 0;
+      }
+
+      .robot__head img.show {
+        opacity: 1;
+      }
+
+
+    </style>
+
+
   </head>
+
+
   <body>
     <div>
-  <!-- <img src='images/face_resting.png' class='face'> -->
-<!--   <img src='images/Bot_separated-all.png' class='body'>
- --></div>
+      <div class="robot__body">
+        <img src='images/Bot_separated-all.png' class='body'>
+      </div>
+      <div class="robot__head">
+        <img class="show face__resting " src='images/face__resting.png' class='face'>
+        <img class="face__question" src='images/face__question.png' class='face'>
+        <img class="face__happy" src='images/face__happy.png' class='face'>
+        <img class="face__heart" src='images/face__heart.png' class='face'>
+      </div>
+    </div>
   </body>
-<style>
 
-body { 
-  /*background-color: rgb(7, 20, 48);*/
-}
-div{
-  /*margin-left: 163px;*/
-}
-/*img.face{
-  width: 1200px;
-  height:auto;
-  position: absolute;
-  z-index: 150;
-}*/
-/*img.body{
-  width: 1200px;
-  height:auto;
-  z-index: 0;
-  position: absolute;
-}*/
-</style>
+  
 
 </html>
+
