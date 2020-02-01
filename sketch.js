@@ -49,8 +49,8 @@ function draw(){
     var vol = mic.getLevel();
     noStroke();
     clear()
-    rect( (width / 2) - 1, (window.innerHeight / 2) - 50, vol * 300, 150);
-    rect( width / 2, (window.innerHeight / 2) - 50, vol * -300, 150);
+    rect((window.innerWidth  / 2) - 1, (window.innerHeight / 2) - 50, vol * 300, 150);
+    rect(window.innerWidth / 2, (window.innerHeight / 2) - 50, vol * -300, 150);
     fill(7, 20, 48);
   }
 }
